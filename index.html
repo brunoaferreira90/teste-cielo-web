@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="web-cielo" lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Cielo - Extrato Cliente</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        .extrato-cliente {
+            background-color: #EEE;
+            padding: 20px 20px 10px 20px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container" >
+    <div class="row">
+        <div class="col-md-offset col-md-12">
+            <div class="extrato-cliente" ng-controller="ExtratoController">
+                <hr>
+                <h1>Extrato Cliente</h1>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Data do Lançamento</th>
+                        <th>Descrição</th>
+						<th>Número</th>
+						<th>Situação</th>
+						<th>Data de Confirmação</th>
+						<th>Dados Bancários</th>
+						<th>Valor Final</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Aqui serão exibidos os dados do usuários cadastrados -->
+                    <tr ng-repeat="extrato in extratos.listaControleLancamento">
+                        <td>{{extrato.dataEfetivaLancamento}}</td>
+                        <td>{{extrato.descricaoGrupoPagamento}}</td>
+						<td>{{extrato.lancamentoContaCorrenteCliente.numeroRemessaBanco}}</td>
+						<td>{{extrato.lancamentoContaCorrenteCliente.nomeSituacaoRemessa}}</td>
+						<td>{{extrato.dataLancamentoContaCorrenteCliente}}</td>
+						<td>{{extrato.nomeBanco}} Ag {{extrato.lancamentoContaCorrenteCliente.dadosDomicilioBancario.numeroAgencia}} CC {{extrato.lancamentoContaCorrenteCliente.dadosDomicilioBancario.numeroContaCorrente}}</td>
+						<td>{{extrato.valorLancamentoRemessa | currency:"R$"}}<td>
+						
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="application/javascript" src="../bower_components/angular/angular.min.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+
+</html>
